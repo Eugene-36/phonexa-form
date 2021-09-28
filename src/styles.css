@@ -1,63 +1,100 @@
-html {
+* {
   box-sizing: border-box;
 }
 
-*::before,
-*::after {
-  box-sizing: inherit;
+body {
+  background-color: #f1f1f1;
 }
 
-.form-inline {
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  /* font-family: Raleway; */
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+h1 {
   text-align: center;
 }
-.form_country {
-  display: flex;
-  justify-content: center;
+
+input {
+  padding: 10px;
+  width: 450px;
+  font-size: 17px;
+  /* font-family: Raleway; */
+  border: 1px solid #aaaaaa;
 }
 
-.flag {
-  width: 300px;
-  height: 300px;
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
 }
 
-.text {
-  font-weight: bold;
-}
-
-.form-control {
-  font-size: 28px;
-  line-height: 1.2;
-  text-align: center;
-  margin: 40px;
-  width: 538px;
-}
-
-.listCountry {
-  font-size: 24px;
-  font-weight: bold;
-  max-width: 500px;
-  text-align: left;
-  margin: 0 auto;
-}
-
-.isHidden {
+/* Hide all steps by default: */
+.tab {
   display: none;
 }
-.gallery {
-  display: flex;
-  flex-flow: row wrap;
-}
-.gallery li {
-  margin: 20px;
+
+button {
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  /* font-family: Raleway; */
+  cursor: pointer;
+
+  display: block;
+
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
 }
 
-.photo-card {
-  margin-right: 20px;
-}
-.stats {
-  display: flex;
+button:hover {
+  opacity: 0.8;
 }
 
-.stats-item {
-  margin-right: 15px;
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+/* .step.finish {
+  background-color: #4caf50;
+} */
+
+/* ========Мои стили=========== */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.wrapper-input:not(:last-child) {
+  margin-bottom: 20px;
+}
+.invalid {
+  border-color: red;
+}
+#error {
+  color: red;
 }

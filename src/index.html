@@ -8,8 +8,71 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+   
     <title>Form</title>
   </head>
 
-  <body></body>
+  <body>
+    <div id="app">
+      <form class="formWithValidation">
+        <div class="wrapper">
+          <div class="head" >
+            <h1>Register a new User</h1>
+          </div>
+          <div class="wrapper-input" id="error">
+            <input type="text" class="first-name fields" placeholder="First Name*" />
+          </div>
+          <div class="wrapper-input" id="error">
+            <input type="text" class="last-name fields" placeholder="Last Name*" />
+          </div>
+          <div class="wrapper-input" id="error">
+            <input type="text" class="login fields" placeholder="Login*" />
+          </div>
+          <div class="wrapper-input" id="error">
+            <input type="text" class="email fields" placeholder="Email*" />
+          </div>
+          <div class="wrapper-input" id="error">
+            <input type="text" class="company-name fields" placeholder="Company Name" />
+          </div>
+          <div class="wrapper-input" id="error">
+            <input type="password" class="password fields" placeholder="Password*" />
+          </div>
+          <div id="error">
+            <input
+              type="password"
+              class="passwordConfirmation fields"
+              placeholder="Confirm Password*"
+            />
+            <button type="submit" class="validateBtn" value="Validate" />
+            Next
+            </button>
+          </div>
+        </div>
+  
+        <div>
+          <!-- <div>
+            <label>Where</label>
+          </div>
+          <div>
+            <select class="where">
+              <option></option>
+              <option value="developers">Developers</option>
+              <option value="managers">Managers</option>
+              <option value="devops">DevOps</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label>Message:</label>
+          </div>
+          <div>
+            <textarea class="message"></textarea>
+          </div> -->
+        </div>
+      </form>
+    </div>
+
+    <!-- <script src="./index.js" type="module"></script> -->
+  </body>
 </html>
