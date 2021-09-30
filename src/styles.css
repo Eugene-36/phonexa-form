@@ -34,20 +34,21 @@ input {
   display: none;
 }
 
-button {
-  background-color: #4caf50;
+.validateBtn {
+  background-color: blue;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
   font-size: 17px;
   font-family: Raleway;
   cursor: pointer;
-
-  display: block;
-
-  margin-right: auto;
-  margin-left: auto;
+  /* display: block; */
+  display: flex;
+  justify-content: center;
+  width: 120px;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button:hover {
@@ -83,8 +84,35 @@ button:hover {
 
 .wrapper {
   display: flex;
+  position: relative;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  width: 600px;
+  background-color: white;
+}
+
+.wrapper-select {
+  /* display: flex; */
+  opacity: 0;
+  top: 20%;
+  left: 25%;
+  position: absolute;
+  transform: translateX(100%);
+
+  width: 600px;
+  height: 350px;
+  background-color: white;
+}
+.moving {
+  position: absolute;
+  visibility: hidden;
+  transform: translateX(-50%);
+}
+.show {
+  transform: translateX(2%);
+  opacity: 1;
 }
 .wrapper-input:not(:last-child) {
   margin-bottom: 20px;
@@ -94,4 +122,99 @@ button:hover {
 }
 #error {
   color: red;
+}
+#first {
+  margin-top: 20px;
+  padding: 10px;
+  width: 450px;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+#second {
+  margin-top: 15px;
+  padding: 10px;
+  width: 450px;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+.select-next {
+  background-color: blue;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+
+  margin-right: 15px;
+}
+.field-position {
+  margin-left: 70px;
+}
+.invisible {
+  transform: translateX(-50%);
+}
+.text-position {
+  text-align: center;
+  margin-bottom: 0px;
+}
+.hide-check {
+  opacity: 0;
+}
+.show-check {
+  opacity: 1;
+  transform: translateX(5%);
+}
+.move-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+#container {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.text-doubleCheck {
+  text-align: center;
+}
+#container > p {
+  text-align: center;
+  font-size: x-large;
+}
+
+.btn-position {
+  display: flex;
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: center;
+}
+.send-localStorage {
+  background-color: blue;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.option-next {
+  background-color: blue;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
