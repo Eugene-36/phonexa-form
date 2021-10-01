@@ -4,8 +4,18 @@
 
 body {
   background-color: #f1f1f1;
+  background-image: url('./img/mainIicon.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
+.formWithValidation {
+  margin-top: 250px;
+}
+.specialization-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 #regForm {
   background-color: #ffffff;
   margin: 100px auto;
@@ -17,6 +27,8 @@ body {
 
 h1 {
   text-align: center;
+  font-size: x-large;
+  color: gray;
 }
 
 input {
@@ -35,7 +47,7 @@ input {
 }
 
 .validateBtn {
-  background-color: blue;
+  background-color: #337ab7;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -47,6 +59,7 @@ input {
   justify-content: center;
   width: 120px;
   margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -89,17 +102,18 @@ button:hover {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  width: 600px;
+  width: 500px;
   background-color: white;
 }
 
 .wrapper-select {
   /* display: flex; */
   opacity: 0;
-  top: 20%;
-  left: 25%;
+  top: 50%;
+  left: 35%;
   position: absolute;
   transform: translateX(100%);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   width: 600px;
   height: 350px;
@@ -141,7 +155,7 @@ button:hover {
 }
 
 .select-next {
-  background-color: blue;
+  background-color: #337ab7;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -163,6 +177,7 @@ button:hover {
 .text-position {
   text-align: center;
   margin-bottom: 0px;
+  color: grey;
 }
 .hide-check {
   opacity: 0;
@@ -196,7 +211,7 @@ button:hover {
   justify-content: center;
 }
 .send-localStorage {
-  background-color: blue;
+  background-color: #337ab7;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -217,4 +232,12 @@ button:hover {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* ============= */
+.invalid {
+  border-color: red;
+}
+#error {
+  color: red;
 }
