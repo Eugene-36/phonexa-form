@@ -1,24 +1,24 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports = (env) => ({
-  devtool: "source-map",
+module.exports = env => ({
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader, // вытянет из js
-          "css-loader", // добавит все в js
-          "postcss-loader", // добавляет автопрефиксы
+          'css-loader', // добавит все в js
+          'postcss-loader', // добавляет автопрефиксы
         ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: './index.html',
       minify: {
         collapseWhitespace: true,
         removeComments: true,
@@ -28,7 +28,12 @@ module.exports = (env) => ({
         useShortDoctype: true,
       },
     }),
-    new MiniCssExtractPlugin({ filename: "styles.css" }),
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
     new OptimizeCssAssetsPlugin(),
   ],
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
 });
