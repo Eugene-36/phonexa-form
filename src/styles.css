@@ -8,6 +8,17 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+input {
+  outline: none;
+}
+
+.invalid {
+  border: 3px solid red;
+}
+.valid {
+  border: 3px solid green;
+}
+
 .formWithValidation {
   margin-top: 250px;
 }
@@ -221,12 +232,4 @@ button:hover {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* ============= */
-.invalid {
-  border-color: red;
-}
-#error {
-  color: red;
 }

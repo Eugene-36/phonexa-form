@@ -15,8 +15,15 @@ const password = form.querySelector('.password');
 const confirmPassword = form.querySelector('.passwordConfirmation');
 const addClassWrapperSelect = form.querySelector('.wrapper-select');
 const lastBlock = form.querySelector('.check-block');
-
 const { departments } = array;
+
+firstName.addEventListener('blur', userName);
+lastName.addEventListener('blur', userLastName);
+login.addEventListener('blur', userLogin);
+email.addEventListener('blur', userEmail);
+
+confirmPassword.addEventListener('blur', chekPasswordMatch);
+password.addEventListener('blur', chekPasswordUniqueness);
 
 const user = {
   Name: '',
@@ -42,13 +49,97 @@ const removeValidation = function (params) {
   }
 };
 
+const lettersOnly = /^[A-Za-z]+$/;
+const emailValidation = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+function userName() {
+  //====================================Валидация First Name
+  if (firstName.value === '') {
+    firstName.classList.add('invalid');
+    firstName.classList.remove('valid');
+    const error = generateError('This field is required');
+    firstName.parentNode.insertBefore(error, firstName.nextSibling);
+    $('.error').next().html('');
+  } else if (!firstName.value.match(lettersOnly)) {
+    firstName.classList.add('invalid');
+    firstName.classList.remove('valid');
+  } else {
+    firstName.classList.add('valid');
+    firstName.classList.remove('invalid');
+    user.Name = firstName.value;
+    removeValidation();
+  }
+}
+function userLastName() {
+  //======================================Валидация Last Name
+  if (lastName.value === '') {
+    lastName.classList.add('invalid');
+    lastName.classList.remove('valid');
+    const error = generateError('This field is required');
+    lastName.parentNode.insertBefore(error, lastName.nextSibling);
+    $('.error').next().html('');
+  } else if (!lastName.value.match(lettersOnly)) {
+    lastName.classList.add('invalid');
+    lastName.classList.remove('valid');
+  } else if (lastName.value.match(lettersOnly)) {
+    lastName.classList.add('valid');
+    lastName.classList.remove('invalid');
+    removeValidation();
+  }
+}
+function userLogin() {
+  //======================================Валидация Login
+  if (login.value === '') {
+    login.classList.add('invalid');
+    login.classList.remove('valid');
+    const error = generateError('This field is required');
+    login.parentNode.insertBefore(error, login.nextSibling);
+    $('.error').next().html('');
+  } else if (!login.value.match(lettersOnly)) {
+    login.classList.add('invalid');
+    login.classList.remove('valid');
+  } else if (login.value.match(lettersOnly)) {
+    login.classList.add('valid');
+    login.classList.remove('invalid');
+    user.login = login.value;
+    removeValidation();
+  }
+}
+function userEmail() {
+  //======================================Валидация Email
+  if (email.value === '') {
+    email.classList.add('invalid');
+    email.classList.remove('valid');
+    const error = generateError('This field is required');
+    email.parentNode.insertBefore(error, email.nextSibling);
+    $('.error').next().html('');
+  } else if (!email.value.match(emailValidation)) {
+    email.classList.add('invalid');
+    email.classList.remove('valid');
+  } else if (email.value.match(emailValidation)) {
+    email.classList.add('valid');
+    email.classList.remove('invalid');
+    user.Email = email.value;
+    removeValidation();
+  }
+}
+
 const chekPasswordMatch = function (params) {
   if (password.value !== confirmPassword.value) {
     confirmPassword.classList.add('invalid');
+    confirmPassword.classList.remove('valid');
     const error = generateError('Must be equal to password');
     confirmPassword.parentNode.insertBefore(error, confirmPassword.nextSibling);
+    $('.error').next().html('');
+  } else if (confirmPassword.value === '') {
+    confirmPassword.classList.add('invalid');
+    confirmPassword.classList.remove('valid');
+    const error = generateError('This field is required');
+    confirmPassword.parentNode.insertBefore(error, confirmPassword.nextSibling);
   } else if (password.value === confirmPassword.value) {
+    confirmPassword.classList.add('valid');
     confirmPassword.classList.remove('invalid');
+    removeValidation();
   }
 };
 
@@ -56,88 +147,45 @@ const chekPasswordUniqueness = function (params) {
   const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{9,}$/;
   if (!password.value.match(regex)) {
     password.classList.add('invalid');
+    password.classList.remove('valid');
     const error = generateError(
       'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*~)',
     );
     password.parentNode.insertBefore(error, password.nextSibling);
+  } else if (password.value === '') {
+    password.classList.add('invalid');
+    password.classList.remove('valid');
+    const error = generateError('This field is required');
+    password.parentNode.insertBefore(error, password.nextSibling);
   } else if (password.value.match(regex)) {
+    password.classList.add('valid');
     password.classList.remove('invalid');
+    removeValidation();
   }
 };
 
 const fieldsValidation = function () {
-  const lettersOnly = /^[A-Za-z]+$/;
-  const emailValidation = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
-  if (firstName.value === '') {
-    firstName.classList.add('invalid');
-    const error = generateError('This field is required');
-    firstName.parentNode.insertBefore(error, firstName.nextSibling);
-  } else if (!firstName.value.match(lettersOnly)) {
-    firstName.classList.add('invalid');
-    const error = generateError('Invalid field');
-    firstName.parentNode.insertBefore(error, firstName.nextSibling);
-  } else if (firstName.value.match(lettersOnly)) {
-    firstName.classList.remove('invalid');
-
-    user.Name = firstName.value;
-  }
-
-  if (lastName.value === '') {
-    lastName.classList.add('invalid');
-    const error = generateError('This field is required');
-    lastName.parentNode.insertBefore(error, lastName.nextSibling);
-  } else if (!lastName.value.match(lettersOnly)) {
-    lastName.classList.add('invalid');
-    const error = generateError('Invalid field');
-    lastName.parentNode.insertBefore(error, lastName.nextSibling);
-  } else if (lastName.value.match(lettersOnly)) {
-    lastName.classList.remove('invalid');
-  }
-
-  if (login.value === '') {
-    login.classList.add('invalid');
-    const error = generateError('This field is required');
-    login.parentNode.insertBefore(error, login.nextSibling);
-  } else if (!login.value.match(lettersOnly)) {
-    login.classList.add('invalid');
-    const error = generateError('Invalid field');
-    login.parentNode.insertBefore(error, login.nextSibling);
-  } else if (login.value.match(lettersOnly)) {
-    login.classList.remove('invalid');
-
-    user.login = login.value;
-  }
-
-  if (email.value === '') {
-    email.classList.add('invalid');
-    const error = generateError('This field is required');
-    email.parentNode.insertBefore(error, email.nextSibling);
-  } else if (!email.value.match(emailValidation)) {
-    email.classList.add('invalid');
-    const error = generateError('Invalid field');
-    email.parentNode.insertBefore(error, email.nextSibling);
-  } else if (email.value.match(emailValidation)) {
-    email.classList.remove('invalid');
-
-    user.Email = email.value;
-  }
-
+  userName();
+  userLastName();
+  userLogin();
+  userEmail();
+  removeValidation();
+  chekPasswordMatch();
+  chekPasswordUniqueness();
   user.Company = companyName.value;
 };
 form.addEventListener('submit', function (e) {
   e.preventDefault();
-  removeValidation();
 
-  chekPasswordMatch();
   fieldsValidation();
-  chekPasswordUniqueness();
 
   if (
     firstName.value &&
     lastName.value &&
     login.value &&
     email.value &&
+    password.value &&
+    confirmPassword.value &&
     password.value === confirmPassword.value
   ) {
     move.classList.add('moving');
@@ -150,11 +198,10 @@ $(document).ready(function () {
     let selectedClass = $(this).find('option:selected').attr('class');
 
     let options = departments[selectedClass];
-    console.log(options);
+
     let newoptions = '';
 
     for (let i = 0; i < options.length; i++) {
-      console.log(options.length);
       newoptions += '<option>' + options[i] + '</option>';
     }
 
@@ -166,7 +213,6 @@ $(document).ready(function () {
     let dataOptions = document.getElementById('second').value;
     user.Department = data;
     user['Job Title'] = dataOptions;
-    console.log(user);
 
     if (data && dataOptions) {
       lastBlock.classList.add('show-check');
