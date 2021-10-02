@@ -1,5 +1,7 @@
 import './styles.css';
 
+import { array } from './js/db.js';
+
 const form = document.querySelector('.formWithValidation');
 const validateBtn = form.querySelector('.validateBtn');
 const move = form.querySelector('.wrapper');
@@ -14,6 +16,8 @@ const confirmPassword = form.querySelector('.passwordConfirmation');
 const addClassWrapperSelect = form.querySelector('.wrapper-select');
 const lastBlock = form.querySelector('.check-block');
 
+const { departments } = array;
+
 const user = {
   Name: '',
   login: '',
@@ -21,17 +25,6 @@ const user = {
   Company: '',
   Department: '',
   'Job Title': '',
-};
-let globaloptions = {
-  Sales: ['Sales Manager', 'Account Manager'],
-  Marketing: ['Creative Manager', 'Marketing Coordinator', 'Content Writer'],
-  Technology: [
-    'Project Manager',
-    'Software Developer',
-    'PHP programmer',
-    'Front End',
-    'Quality Assurance',
-  ],
 };
 
 const generateError = function (text) {
@@ -156,7 +149,7 @@ $(document).ready(function () {
   $('#first').change(function () {
     let selectedClass = $(this).find('option:selected').attr('class');
 
-    let options = globaloptions[selectedClass];
+    let options = departments[selectedClass];
     console.log(options);
     let newoptions = '';
 
