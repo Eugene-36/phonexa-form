@@ -144,6 +144,7 @@ button:hover {
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
+  outline: none;
 }
 #second {
   margin-top: 15px;
@@ -152,6 +153,7 @@ button:hover {
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
+  outline: none;
 }
 
 .select-next {
@@ -187,7 +189,7 @@ button:hover {
   transform: translateX(5%);
 }
 .move-left {
-  transform: translateX(-100%);
+  transform: translateX(100%);
   opacity: 0;
 }
 

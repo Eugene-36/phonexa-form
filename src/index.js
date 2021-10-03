@@ -15,13 +15,14 @@ const password = form.querySelector('.password');
 const confirmPassword = form.querySelector('.passwordConfirmation');
 const addClassWrapperSelect = form.querySelector('.wrapper-select');
 const lastBlock = form.querySelector('.check-block');
+const linkToDepartment = form.querySelector('.department');
+
 const { departments } = array;
 
 firstName.addEventListener('blur', userName);
 lastName.addEventListener('blur', userLastName);
 login.addEventListener('blur', userLogin);
 email.addEventListener('blur', userEmail);
-
 confirmPassword.addEventListener('blur', chekPasswordMatch);
 password.addEventListener('blur', chekPasswordUniqueness);
 
@@ -198,8 +199,10 @@ $(document).ready(function () {
     let selectedClass = $(this).find('option:selected').attr('class');
 
     let options = departments[selectedClass];
-
     let newoptions = '';
+    if (selectedClass === 'department') {
+      return linkToDepartment.setAttribute('disabled', true);
+    }
 
     for (let i = 0; i < options.length; i++) {
       newoptions += '<option>' + options[i] + '</option>';
