@@ -8,6 +8,7 @@ const password = form.querySelector('.password');
 const confirmPassword = form.querySelector('.passwordConfirmation');
 const move = form.querySelector('.wrapper');
 const addClassWrapperSelect = form.querySelector('.wrapper-select');
+const vld = form.querySelector('.validateBtn');
 
 firstName.addEventListener('blur', userName);
 lastName.addEventListener('blur', userLastName);
@@ -115,7 +116,7 @@ function userEmail() {
   }
 }
 
-const chekPasswordMatch = function (params) {
+function chekPasswordMatch(params) {
   if (password.value !== confirmPassword.value) {
     confirmPassword.classList.add('invalid');
     confirmPassword.classList.remove('valid');
@@ -132,9 +133,8 @@ const chekPasswordMatch = function (params) {
     confirmPassword.classList.remove('invalid');
     removeValidation();
   }
-};
-
-const chekPasswordUniqueness = function (params) {
+}
+function chekPasswordUniqueness(params) {
   const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{9,}$/;
   if (!password.value.match(regex)) {
     password.classList.add('invalid');
@@ -143,6 +143,8 @@ const chekPasswordUniqueness = function (params) {
       'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*~)',
     );
     password.parentNode.insertBefore(error, password.nextSibling);
+    vld.setAttribute('disabled', true);
+    $('.error').next().html('');
   } else if (password.value === '') {
     password.classList.add('invalid');
     password.classList.remove('valid');
@@ -151,11 +153,12 @@ const chekPasswordUniqueness = function (params) {
   } else if (password.value.match(regex)) {
     password.classList.add('valid');
     password.classList.remove('invalid');
+    vld.removeAttribute('disabled', false);
     removeValidation();
   }
-};
+}
 
-const fieldsValidation = function () {
+function fieldsValidation() {
   userName();
   userLastName();
   userLogin();
@@ -164,7 +167,7 @@ const fieldsValidation = function () {
   chekPasswordMatch();
   chekPasswordUniqueness();
   user.Company = companyName.value;
-};
+}
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();

@@ -103,6 +103,7 @@ button:hover {
   margin-right: auto;
   text-align: center;
   width: 500px;
+  margin-top: -50px;
   background-color: white;
 }
 
