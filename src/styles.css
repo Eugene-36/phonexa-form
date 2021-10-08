@@ -125,9 +125,7 @@ button:hover {
   background-color: white;
 }
 .moving {
-  position: absolute;
-  visibility: hidden;
-  transform: translateX(-50%);
+  display: none;
 }
 .show {
   top: 50%;

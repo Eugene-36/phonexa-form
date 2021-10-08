@@ -37,78 +37,233 @@ const removeValidation = function (params) {
 const lettersOnly = /^[A-Za-z]+$/;
 const emailValidation = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-function userName() {
-  //====================================Валидация First Name
+// function userName() {
+//   //====================================Валидация First Name
+//   if (firstName.value === '') {
+//     firstName.classList.add('invalid');
+//     firstName.classList.remove('valid');
+//     const error = generateError('This field is required');
+//     firstName.parentNode.insertBefore(error, firstName.nextSibling);
+//     $('.error').next().html('');
+//   } else if (!firstName.value.match(lettersOnly)) {
+//     firstName.classList.add('invalid');
+//     firstName.classList.remove('valid');
+//   } else {
+//     firstName.classList.add('valid');
+//     firstName.classList.remove('invalid');
+//     user.Name = firstName.value;
+//     removeValidation();
+//   }
+// }
+
+firstName.onblur = function () {
   if (firstName.value === '') {
     firstName.classList.add('invalid');
-    firstName.classList.remove('valid');
     const error = generateError('This field is required');
     firstName.parentNode.insertBefore(error, firstName.nextSibling);
-    $('.error').next().html('');
   } else if (!firstName.value.match(lettersOnly)) {
+    // не email
     firstName.classList.add('invalid');
-    firstName.classList.remove('valid');
+    const error = generateError(
+      'Incorrect format of the name! Required letters only.',
+    );
+    firstName.parentNode.insertBefore(error, firstName.nextSibling);
   } else {
-    firstName.classList.add('valid');
-    firstName.classList.remove('invalid');
-    user.Name = firstName.value;
+    this.classList.add('valid');
+  }
+};
+
+firstName.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    // удаляем индикатор ошибки, т.к. пользователь хочет ввести данные заново
+    this.classList.remove('invalid');
+    this.classList.remove('valid');
     removeValidation();
   }
-}
-function userLastName() {
-  //======================================Валидация Last Name
+};
+//====================================================================================
+//======================================Валидация Last Name
+// function userLastName() {
+//   if (lastName.value === '') {
+//     lastName.classList.add('invalid');
+//     lastName.classList.remove('valid');
+//     const error = generateError('This field is required');
+//     lastName.parentNode.insertBefore(error, lastName.nextSibling);
+//     $('.error').next().html('');
+//   } else if (!lastName.value.match(lettersOnly)) {
+//     lastName.classList.add('invalid');
+//     lastName.classList.remove('valid');
+//   } else if (lastName.value.match(lettersOnly)) {
+//     lastName.classList.add('valid');
+//     lastName.classList.remove('invalid');
+//     removeValidation();
+//   }
+// }
+
+lastName.onblur = function () {
   if (lastName.value === '') {
     lastName.classList.add('invalid');
-    lastName.classList.remove('valid');
     const error = generateError('This field is required');
     lastName.parentNode.insertBefore(error, lastName.nextSibling);
-    $('.error').next().html('');
   } else if (!lastName.value.match(lettersOnly)) {
+    // не email
     lastName.classList.add('invalid');
-    lastName.classList.remove('valid');
-  } else if (lastName.value.match(lettersOnly)) {
-    lastName.classList.add('valid');
-    lastName.classList.remove('invalid');
+    const error = generateError(
+      'Incorrect format of the Last Name! Required letters only.',
+    );
+    lastName.parentNode.insertBefore(error, lastName.nextSibling);
+  } else {
+    this.classList.add('valid');
+  }
+};
+
+lastName.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    // удаляем индикатор ошибки, т.к. пользователь хочет ввести данные заново
+    this.classList.remove('invalid');
+    this.classList.remove('valid');
     removeValidation();
   }
-}
-function userLogin() {
-  //======================================Валидация Login
+};
+
+//==============================================================
+//======================================Валидация Login
+// function userLogin() {
+//   if (login.value === '') {
+//     login.classList.add('invalid');
+//     login.classList.remove('valid');
+//     const error = generateError('This field is required');
+//     login.parentNode.insertBefore(error, login.nextSibling);
+//     $('.error').next().html('');
+//   } else if (!login.value.match(lettersOnly)) {
+//     login.classList.add('invalid');
+//     login.classList.remove('valid');
+//   } else if (login.value.match(lettersOnly)) {
+//     login.classList.add('valid');
+//     login.classList.remove('invalid');
+//     user.login = login.value;
+//     removeValidation();
+//   }
+// }
+login.onblur = function () {
   if (login.value === '') {
     login.classList.add('invalid');
-    login.classList.remove('valid');
     const error = generateError('This field is required');
     login.parentNode.insertBefore(error, login.nextSibling);
-    $('.error').next().html('');
-  } else if (!login.value.match(lettersOnly)) {
-    login.classList.add('invalid');
-    login.classList.remove('valid');
-  } else if (login.value.match(lettersOnly)) {
-    login.classList.add('valid');
-    login.classList.remove('invalid');
-    user.login = login.value;
+  } else {
+    this.classList.add('valid');
+  }
+};
+
+login.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    // удаляем индикатор ошибки, т.к. пользователь хочет ввести данные заново
+    this.classList.remove('invalid');
+    this.classList.remove('valid');
     removeValidation();
   }
-}
-function userEmail() {
-  //======================================Валидация Email
+};
+//===============================================================================
+//======================================Валидация Email
+// function userEmail() {
+//   if (email.value === '') {
+//     const error = generateError('This field is required');
+//     email.parentNode.insertBefore(error, email.nextSibling);
+//     email.classList.add('invalid');
+//     email.classList.remove('valid');
+//     $('.error').next().html('');
+//   } else if (!email.value.match(emailValidation)) {
+//     email.classList.add('invalid');
+//     email.classList.remove('valid');
+//   } else if (email.value.match(emailValidation)) {
+//     email.classList.add('valid');
+//     email.classList.remove('invalid');
+//     user.Email = email.value;
+//     removeValidation();
+//   }
+// }
+
+email.onblur = function () {
   if (email.value === '') {
+    email.classList.add('invalid');
     const error = generateError('This field is required');
     email.parentNode.insertBefore(error, email.nextSibling);
-    email.classList.add('invalid');
-    email.classList.remove('valid');
-    $('.error').next().html('');
   } else if (!email.value.match(emailValidation)) {
     email.classList.add('invalid');
-    email.classList.remove('valid');
-  } else if (email.value.match(emailValidation)) {
-    email.classList.add('valid');
-    email.classList.remove('invalid');
-    user.Email = email.value;
+    const error = generateError('Incorrect format of the Email!');
+    email.parentNode.insertBefore(error, email.nextSibling);
+  } else {
+    this.classList.add('valid');
+  }
+};
+
+email.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    // удаляем индикатор ошибки, т.к. пользователь хочет ввести данные заново
+    this.classList.remove('invalid');
+    this.classList.remove('valid');
     removeValidation();
   }
-}
+};
 
+//=============================================================================
+// Password Uniqueness ============================================================
+
+// function chekPasswordUniqueness(params) {
+//   const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{9,}$/;
+//   if (!password.value.match(regex)) {
+//     password.classList.add('invalid');
+//     password.classList.remove('valid');
+//     const error = generateError(
+//       'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*~)',
+//     );
+//     password.parentNode.insertBefore(error, password.nextSibling);
+//     vld.setAttribute('disabled', true);
+//     $('.error').next().html('');
+//   } else if (password.value === '') {
+//     password.classList.add('invalid');
+//     password.classList.remove('valid');
+//     const error = generateError('This field is required');
+//     password.parentNode.insertBefore(error, password.nextSibling);
+//   } else if (password.value.match(regex)) {
+//     password.classList.add('valid');
+//     password.classList.remove('invalid');
+//     vld.removeAttribute('disabled', false);
+//     removeValidation();
+//   }
+// }
+
+password.onblur = function () {
+  const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{9,}$/;
+  if (password.value === '') {
+    password.classList.add('invalid');
+    // password.classList.remove('valid');
+    const error = generateError('This field is required');
+    password.parentNode.insertBefore(error, password.nextSibling);
+  } else if (!password.value.match(regex)) {
+    password.classList.add('invalid');
+    // password.classList.remove('valid');
+    const error = generateError(
+      'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*~)',
+    );
+    password.parentNode.insertBefore(error, password.nextSibling);
+    vld.setAttribute('disabled', true);
+    // $('.error').next().html('');
+  } else {
+    this.classList.add('valid');
+  }
+};
+
+password.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    // удаляем индикатор ошибки, т.к. пользователь хочет ввести данные заново
+    this.classList.remove('invalid');
+    this.classList.remove('valid');
+    removeValidation();
+  }
+};
+
+//=================================================================================
 function chekPasswordMatch(params) {
   if (password.value !== confirmPassword.value) {
     confirmPassword.classList.add('invalid');
@@ -127,29 +282,6 @@ function chekPasswordMatch(params) {
     removeValidation();
   }
 }
-function chekPasswordUniqueness(params) {
-  const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{9,}$/;
-  if (!password.value.match(regex)) {
-    password.classList.add('invalid');
-    password.classList.remove('valid');
-    const error = generateError(
-      'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*~)',
-    );
-    password.parentNode.insertBefore(error, password.nextSibling);
-    vld.setAttribute('disabled', true);
-    $('.error').next().html('');
-  } else if (password.value === '') {
-    password.classList.add('invalid');
-    password.classList.remove('valid');
-    const error = generateError('This field is required');
-    password.parentNode.insertBefore(error, password.nextSibling);
-  } else if (password.value.match(regex)) {
-    password.classList.add('valid');
-    password.classList.remove('invalid');
-    vld.removeAttribute('disabled', false);
-    removeValidation();
-  }
-}
 
 function fieldsValidation() {
   userName();
@@ -161,11 +293,11 @@ function fieldsValidation() {
   chekPasswordUniqueness();
   user.Company = companyName.value;
 }
-firstName.addEventListener('blur', userName);
-lastName.addEventListener('blur', userLastName);
-login.addEventListener('blur', userLogin);
-email.addEventListener('blur', userEmail);
-password.addEventListener('blur', chekPasswordUniqueness);
+// firstName.addEventListener('blur', userName);
+// lastName.addEventListener('blur', userLastName);
+// login.addEventListener('blur', userLogin);
+// email.addEventListener('blur', userEmail);
+// password.addEventListener('blur', chekPasswordUniqueness);
 confirmPassword.addEventListener('blur', chekPasswordMatch);
 
 form.addEventListener('submit', function (e) {
