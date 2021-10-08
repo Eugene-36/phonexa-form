@@ -10,13 +10,6 @@ const move = form.querySelector('.wrapper');
 const addClassWrapperSelect = form.querySelector('.wrapper-select');
 const vld = form.querySelector('.validateBtn');
 
-firstName.addEventListener('blur', userName);
-lastName.addEventListener('blur', userLastName);
-login.addEventListener('blur', userLogin);
-email.addEventListener('blur', userEmail);
-password.addEventListener('blur', chekPasswordUniqueness);
-confirmPassword.addEventListener('blur', chekPasswordMatch);
-
 export const user = {
   Name: '',
   login: '',
@@ -100,10 +93,10 @@ function userLogin() {
 function userEmail() {
   //======================================Валидация Email
   if (email.value === '') {
-    email.classList.add('invalid');
-    email.classList.remove('valid');
     const error = generateError('This field is required');
     email.parentNode.insertBefore(error, email.nextSibling);
+    email.classList.add('invalid');
+    email.classList.remove('valid');
     $('.error').next().html('');
   } else if (!email.value.match(emailValidation)) {
     email.classList.add('invalid');
@@ -168,12 +161,17 @@ function fieldsValidation() {
   chekPasswordUniqueness();
   user.Company = companyName.value;
 }
+firstName.addEventListener('blur', userName);
+lastName.addEventListener('blur', userLastName);
+login.addEventListener('blur', userLogin);
+email.addEventListener('blur', userEmail);
+password.addEventListener('blur', chekPasswordUniqueness);
+confirmPassword.addEventListener('blur', chekPasswordMatch);
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   fieldsValidation();
-
   if (
     firstName.value &&
     lastName.value &&

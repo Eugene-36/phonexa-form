@@ -2,16 +2,23 @@
   box-sizing: border-box;
 }
 
-body {
+body,
+html {
   background-color: #f1f1f1;
   background-image: url('./img/mainIicon-min.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
 }
 input {
   outline: none;
 }
-
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .invalid {
   border: 3px solid red;
 }
@@ -19,9 +26,6 @@ input {
   border: 3px solid green;
 }
 
-.formWithValidation {
-  margin-top: 250px;
-}
 .specialization-wrapper {
   display: flex;
   justify-content: center;
@@ -99,21 +103,21 @@ button:hover {
   display: flex;
   position: relative;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
+
   text-align: center;
   width: 500px;
-  margin-top: -50px;
+
   background-color: white;
 }
 
 .wrapper-select {
-  /* display: flex; */
-  opacity: 0;
+  display: none;
   top: 50%;
-  left: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   position: absolute;
-  transform: translateX(100%);
+
   transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   width: 600px;
@@ -126,8 +130,10 @@ button:hover {
   transform: translateX(-50%);
 }
 .show {
-  transform: translateX(2%);
-  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
 }
 .wrapper-input:not(:last-child) {
   margin-bottom: 20px;
@@ -182,16 +188,12 @@ button:hover {
   margin-bottom: 0px;
   color: grey;
 }
-.hide-check {
-  opacity: 0;
-}
+
 .show-check {
-  opacity: 1;
-  transform: translateX(5%);
+  display: block;
 }
 .move-left {
-  transform: translateX(100%);
-  opacity: 0;
+  display: none;
 }
 
 #container {
