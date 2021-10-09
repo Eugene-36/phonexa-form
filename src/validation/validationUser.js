@@ -69,6 +69,7 @@ firstName.onblur = function () {
     );
     firstName.parentNode.insertBefore(error, firstName.nextSibling);
   } else {
+    user.Name = firstName.value;
     this.classList.add('valid');
   }
 };
@@ -152,6 +153,7 @@ login.onblur = function () {
     login.parentNode.insertBefore(error, login.nextSibling);
   } else {
     this.classList.add('valid');
+    user.login = login.value;
   }
 };
 
@@ -193,6 +195,7 @@ email.onblur = function () {
     const error = generateError('Incorrect format of the Email!');
     email.parentNode.insertBefore(error, email.nextSibling);
   } else {
+    user.Email = email.value;
     this.classList.add('valid');
   }
 };
@@ -247,7 +250,7 @@ password.onblur = function () {
       'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*~)',
     );
     password.parentNode.insertBefore(error, password.nextSibling);
-    vld.setAttribute('disabled', true);
+
     // $('.error').next().html('');
   } else {
     this.classList.add('valid');
@@ -264,56 +267,119 @@ password.onfocus = function () {
 };
 
 //=================================================================================
-function chekPasswordMatch(params) {
-  if (password.value !== confirmPassword.value) {
+//===================================================PasswordMatch
+// function chekPasswordMatch(params) {
+//   if (password.value !== confirmPassword.value) {
+//     confirmPassword.classList.add('invalid');
+//     confirmPassword.classList.remove('valid');
+//     const error = generateError('Must be equal to password');
+//     confirmPassword.parentNode.insertBefore(error, confirmPassword.nextSibling);
+//     $('.error').next().html('');
+//   } else if (confirmPassword.value === '') {
+//     confirmPassword.classList.add('invalid');
+//     confirmPassword.classList.remove('valid');
+//     const error = generateError('This field is required');
+//     confirmPassword.parentNode.insertBefore(error, confirmPassword.nextSibling);
+//   } else if (password.value === confirmPassword.value) {
+//     confirmPassword.classList.add('valid');
+//     confirmPassword.classList.remove('invalid');
+//     removeValidation();
+//   }
+// }
+
+confirmPassword.onblur = function () {
+  const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{9,}$/;
+  if (confirmPassword.value === '') {
     confirmPassword.classList.add('invalid');
-    confirmPassword.classList.remove('valid');
-    const error = generateError('Must be equal to password');
-    confirmPassword.parentNode.insertBefore(error, confirmPassword.nextSibling);
-    $('.error').next().html('');
-  } else if (confirmPassword.value === '') {
-    confirmPassword.classList.add('invalid');
-    confirmPassword.classList.remove('valid');
+    // password.classList.remove('valid');
     const error = generateError('This field is required');
     confirmPassword.parentNode.insertBefore(error, confirmPassword.nextSibling);
+  } else if (password.value !== confirmPassword.value) {
+    confirmPassword.classList.add('invalid');
+    // confirmPassword.classList.remove('valid');
+    const error = generateError('Must be equal to password');
+    confirmPassword.parentNode.insertBefore(error, confirmPassword.nextSibling);
   } else if (password.value === confirmPassword.value) {
-    confirmPassword.classList.add('valid');
-    confirmPassword.classList.remove('invalid');
+    this.classList.add('valid');
+  }
+};
+
+confirmPassword.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    // удаляем индикатор ошибки, т.к. пользователь хочет ввести данные заново
+
+    this.classList.remove('invalid');
+    this.classList.remove('valid');
     removeValidation();
   }
-}
-
-function fieldsValidation() {
-  userName();
-  userLastName();
-  userLogin();
-  userEmail();
-  removeValidation();
-  chekPasswordMatch();
-  chekPasswordUniqueness();
-  user.Company = companyName.value;
-}
+};
+//=================================================================================
+// function fieldsValidation() {
+//   userName();
+//   userLastName();
+//   userLogin();
+//   userEmail();
+//   removeValidation();
+//   chekPasswordMatch();
+//   chekPasswordUniqueness();
+//   user.Company = companyName.value;
+// }
 // firstName.addEventListener('blur', userName);
 // lastName.addEventListener('blur', userLastName);
 // login.addEventListener('blur', userLogin);
 // email.addEventListener('blur', userEmail);
 // password.addEventListener('blur', chekPasswordUniqueness);
-confirmPassword.addEventListener('blur', chekPasswordMatch);
-
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  fieldsValidation();
+//confirmPassword.addEventListener('blur', chekPasswordMatch);
+function allValidation() {
   if (
-    firstName.value &&
-    lastName.value &&
-    login.value &&
-    email.value &&
-    password.value &&
-    confirmPassword.value &&
-    password.value === confirmPassword.value
+    firstName.value === '' &&
+    lastName.value === '' &&
+    login.value === '' &&
+    email.value === '' &&
+    password.value === '' &&
+    confirmPassword.value === ''
   ) {
+    console.log('Работает условие с пустой стракой');
+    return false;
+    // vld.setAttribute('disabled', true);
+  } else if (
+    firstName.classList.contains('invalid') ||
+    lastName.classList.contains('invalid') ||
+    login.classList.contains('invalid') ||
+    email.classList.contains('invalid') ||
+    password.classList.contains('invalid') ||
+    confirmPassword.classList.contains('invalid')
+  ) {
+    console.log('First name: ', firstName.classList.contains('invalid'));
+    console.log('Last name: ', lastName.classList.contains('invalid'));
+    console.log('Login name: ', login.classList.contains('invalid'));
+    console.log('email: ', email.classList.contains('invalid'));
+    console.log('Password: ', password.classList.contains('invalid'));
+    console.log(
+      'Confirm password: ',
+      confirmPassword.classList.contains('invalid'),
+    );
+    `=============================================================================`;
+    return false;
+    //vld.setAttribute('disabled', true);
+  } else {
+    // vld.removeAttribute('disabled', false);
     move.classList.add('moving');
     addClassWrapperSelect.classList.add('show');
   }
+}
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  allValidation();
+  // fieldsValidation();
+  //     vld.setAttribute('disabled', true);
+  //     vld.removeAttribute('disabled', false);
+  //  vld.setAttribute('disabled', true);
+
+  //this.classList.contains('active')
 });
+
+// console.log(
+//   document.querySelector('.first-name').classList.contains('invalid'),
+// );
