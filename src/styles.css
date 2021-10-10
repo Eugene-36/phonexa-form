@@ -5,10 +5,12 @@
 body,
 html {
   background-color: #f1f1f1;
+
   background-image: url('./img/main-photo.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
+  overflow: hidden;
 }
 input {
   outline: none;
@@ -19,6 +21,7 @@ input {
   align-items: center;
   height: 100%;
 }
+
 .invalid {
   border: 3px solid red;
 }

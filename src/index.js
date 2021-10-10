@@ -4,6 +4,7 @@ const form = document.querySelector('.formWithValidation');
 const validateBtn = form.querySelector('.validateBtn');
 const idContainer = document.getElementById('container');
 const selectContainer = document.getElementById('second');
+const selectFirst = document.getElementById('first');
 const selectNext = form.querySelector('.select-next');
 const addClassWrapperSelect = form.querySelector('.wrapper-select');
 const lastBlock = form.querySelector('.check-block');
@@ -15,14 +16,15 @@ import { user } from './validation/validationUser';
 
 const { departments } = array;
 
-$(document).ready(function () {
-  $('#first').change(function () {
-    let selectedClass = $(this).find('option:selected').attr('class');
+document.addEventListener('DOMContentLoaded', function (event) {
+  selectFirst.addEventListener('change', function () {
+    let selectedClass =
+      document.getElementById('first').options[document.getElementById('first').selectedIndex].text;
 
     let options = departments[selectedClass];
     let newoptions = '';
 
-    if (selectedClass === 'Department') {
+    if (selectedClass === 'Departments') {
       return linkToDepartment.setAttribute('disabled', true);
     }
 
@@ -48,7 +50,6 @@ $(document).ready(function () {
     let newString = '';
 
     for (const [key, value] of Object.entries(user)) {
-      console.log(`${key}: ${value}`);
       newString += `<span>${key}: ${value}</span>`;
     }
 
