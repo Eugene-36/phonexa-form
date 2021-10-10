@@ -2,7 +2,8 @@ import './styles.css';
 
 const form = document.querySelector('.formWithValidation');
 const validateBtn = form.querySelector('.validateBtn');
-
+const idContainer = document.getElementById('container');
+const selectContainer = document.getElementById('second');
 const selectNext = form.querySelector('.select-next');
 const addClassWrapperSelect = form.querySelector('.wrapper-select');
 const lastBlock = form.querySelector('.check-block');
@@ -28,12 +29,13 @@ $(document).ready(function () {
     for (let i = 0; i < options.length; i++) {
       newoptions += '<option>' + options[i] + '</option>';
     }
-
-    $('#second').html(newoptions).removeAttr('disabled');
+    selectContainer.innerHTML = newoptions;
+    selectContainer.removeAttribute('disabled', false);
   });
 
   selectNext.addEventListener('click', () => {
     let data = document.getElementById('first').value;
+
     let dataOptions = document.getElementById('second').value;
     user.Department = data;
     user['Job Title'] = dataOptions;
@@ -44,11 +46,13 @@ $(document).ready(function () {
     }
 
     let newString = '';
-    let p = document.createElement('p');
+
     for (const [key, value] of Object.entries(user)) {
-      newString += '<span>' + `${key}: ${value}` + '</span>';
+      console.log(`${key}: ${value}`);
+      newString += `<span>${key}: ${value}</span>`;
     }
-    $('#container').html(newString);
+
+    idContainer.innerHTML = newString;
   });
 });
 
@@ -59,7 +63,8 @@ document.querySelector('.send-localStorage')?.addEventListener('click', () => {
   if (localStorage.getItem('currentUser')) {
     clear.innerHTML = '';
 
-    $('#container').html('<p>' + 'Thank You!' + '</p>');
+    const template = '<p>' + 'Thank You!' + '</p>';
+    idContainer.insertAdjacentHTML('beforeEnd', template);
   }
 });
 document.getElementById('edit').addEventListener('click', () => {
