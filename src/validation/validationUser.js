@@ -171,7 +171,6 @@ password.onblur = function () {
   } else if (!password.value.match(regex)) {
     password.classList.add('invalid');
     this.classList.remove('valid');
-    // password.classList.remove('valid');
     const error = generateError(
       'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*~)',
     );
